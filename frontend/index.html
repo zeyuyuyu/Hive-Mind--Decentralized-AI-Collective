@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBrain - Level Up Your Coding Journey!</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <div id="app" class="min-h-screen">
+        <!-- Achievement Popup -->
+        <div id="achievement-popup" class="fixed top-4 right-4 animate__animated animate__bounceIn hidden">
+            <div class="bg-purple-600 rounded-lg p-4 shadow-lg">
+                <h3 class="text-xl font-bold">🏆 Achievement Unlocked!</h3>
+                <p id="achievement-text"></p>
+            </div>
+        </div>
+
+        <!-- Streak Counter -->
+        <div class="fixed top-4 left-4 bg-gray-800 rounded-full p-4 shadow-lg">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">🔥</span>
+                <span id="streak-count" class="text-xl font-bold">0</span>
+                <span>day streak</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">DevBrain</h1>
+                <p class="text-xl text-gray-400">Level up your coding skills with friends!</p>
+            </div>
+
+            <!-- Daily Challenge -->
+            <div class="bg-gray-800 rounded-xl p-6 mb-8 animate__animated animate__fadeIn">
+                <h2 class="text-2xl font-bold mb-4">🎯 Daily Challenge</h2>
+                <div class="bg-gray-700 rounded-lg p-4">
+                    <p id="challenge-text" class="text-lg mb-4">Solve this coding puzzle and earn 50 XP!</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-purple-400">12 friends completed this</span>
+                        <button class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg transition-all transform hover:scale-105">Accept Challenge</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <h2 class="text-2xl font-bold mb-4">🏆 Global Leaderboard</h2>
+                    <div class="space-y-4" id="leaderboard">
+                        <!-- Leaderboard entries -->
+                    </div>
+                </div>
+
+                <!-- Progress & Achievements -->
+                <div class="bg-gray-800 rounded-xl p-6">
+                    <h2 class="text-2xl font-bold mb-4">🌟 Your Progress</h2>
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span>Level 5</span>
+                            <span>1250/2000 XP</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-4">
+                            <div class="bg-purple-600 rounded-full h-4" style="width: 62.5%"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-gray-700 rounded-lg p-4 text-center hover:bg-gray-600 cursor-pointer transition-all transform hover:scale-105">
+                            <span class="text-3xl">🚀</span>
+                            <p class="mt-2 text-sm">Fast Learner</p>
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-4 text-center hover:bg-gray-600 cursor-pointer transition-all transform hover:scale-105">
+                            <span class="text-3xl">💎</span>
+                            <p class="mt-2 text-sm">Code Master</p>
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-4 text-center hover:bg-gray-600 cursor-pointer transition-all transform hover:scale-105">
+                            <span class="text-3xl">🤝</span>
+                            <p class="mt-2 text-sm">Team Player</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Features Modal -->
+    <div id="social-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
+        <div class="bg-gray-800 rounded-xl p-6 max-w-md mx-auto mt-20">
+            <h3 class="text-2xl font-bold mb-4">🤝 Challenge Friends</h3>
+            <p class="mb-4">Share your achievements or challenge friends to beat your score!</p>
+            <div class="flex space-x-4">
+                <button class="flex-1 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg">Share on Twitter</button>
+                <button class="flex-1 bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg">Challenge Friend</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gamification Logic
+        let streak = 0;
+        let xp = 0;
+        
+        function showAchievement(text) {
+            const popup = document.getElementById('achievement-popup');
+            document.getElementById('achievement-text').textContent = text;
+            popup.classList.remove('hidden');
+            setTimeout(() => popup.classList.add('hidden'), 3000);
+        }
+
+        // Simulate achievements
+        setTimeout(() => showAchievement('First Daily Challenge Completed! +50 XP'), 2000);
+        
+        // Update streak counter
+        setInterval(() => {
+            streak++;
+            document.getElementById('streak-count').textContent = streak;
+            if (streak % 5 === 0) {
+                showAchievement(`${streak} Day Streak! +100 XP Bonus!`);
+            }
+        }, 5000); // Demo purposes only
+    </script>
+</body>
+</html>
